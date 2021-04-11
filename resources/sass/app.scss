@@ -3,8 +3,6 @@ $colorBrown: rgb(102, 44, 8);
 $colorOrange: rgb(231, 95, 9);
 
 
-
-
 a {
     text-decoration: none;
 }
@@ -44,7 +42,7 @@ background-color: $colorOrange;
 .card-container {
     display: inline-block;
     margin-top: 1em;
-    margin-left: 1em;
+    margin-left: 2em;
     flex: 1 1 auto;
 }
 
@@ -136,17 +134,75 @@ li {
     z-index: 8;
 }
 
+.edit-button {
+    position: absolute;
+    top: 0.5em;
+    left: 5px;
+    padding: 4px;
+    z-index: 8;
+}
+
+.delete-button {
+    position: absolute;
+    top: 3em;
+    left: 5px;
+    padding: 4px;
+    z-index: 8;
+}
+
 .card-body {
-    padding: 0 1.25rem 1.25rem 1.25rem ;
+    padding: 0 1.25rem 0.25rem 1.25rem ;
 }
 
 .reviews {
     text-align: center;
 }
-.number-review .rating {
+.number-review>.camping-rating {
     color: rgb(27, 19, 11);
     font-size: 18px;
     font-weight: 800;
+}
+
+/* side card */
+.aside-card-container {
+    display: inline-block;
+    margin-top: 1em;
+    margin-left: 1em;
+    flex: 1 1 auto;
+    width: 90%;
+    height: 150px;
+}
+
+.aside-card {
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(134, 125, 115, 0.26);
+    border-radius: 15px;
+}
+
+.aside-card .aside-camping-item-image img {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    flex-shrink: 0;
+    width: 200px;
+    height: 150px;
+}
+
+.aside-card .card-body .reviews {
+    padding-bottom: 8px;
+}
+
+.tags span {
+    border-radius: 5px;
+    background-color: #63534a;
+    color: #fff;
+    margin-right: 0.5rem; 
+    padding: 0.25rem;
 }
 
 /* hover */
@@ -159,7 +215,174 @@ li {
 .card-title a:hover {
     color: $colorBrown;   
 }
-.far.fa-heart:hover {
+.far.fa-heart:hover,
+.fas.fa-pen-square:hover, 
+.fas.fa-trash-alt:hover,
+.fas.fa-plus-circle:hover  {
     color: $colorBrown;    
 }
 /* end hover*/
+
+// Layout
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+  
+.main-content {
+    flex: 60%;
+}
+
+.aside-content {
+    flex: 40%;
+}
+
+//Form
+h2 {
+    color: $colorBrown;
+    margin: 0.5em 0 0.5em 0;
+    display: inline-block;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+//Header
+
+.camping-header h2 {
+    display: inline-block;
+}
+
+.fas.fa-plus-circle {
+    font-size: 2em;
+    color: $colorOrange;
+}
+
+.fas.fa-pen-square, .fas.fa-trash-alt {
+    font-size: 2em;
+    color: #fff;
+}
+
+//RATINGS
+$star-color-default: #ccc !default;
+$star-color-active : #feca02 !default;
+
+$star-space-default: 4px !default;
+$star-space-large  : $star-space-default * 2 !default; //8px
+
+$star-size-default : 16px !default;
+$star-size-large   : $star-size-default + $star-space-large !default; //24px
+
+$star-font-default : 24px !default;
+$star-font-large   : $star-font-default + $star-space-large !default; //32px
+
+@mixin square($size) {
+  height: $size;
+  width: $size;
+}
+
+@mixin star($size,$space,$color,$font) {
+  @include square($size);
+  color: $color;
+  font-size: $font;
+  line-height: $size;
+  margin-right: $space;
+  text-align: center;
+}
+@mixin starSize($size,$space,$font){
+  @include square($size);
+  font-size: $font;
+  margin-right: $space;
+}
+
+// Initial rating setup
+.rating {
+  font-size: 0;
+  &:after {
+    content:" ";
+    clear:both;
+    display:block;
+  }
+}
+
+// Rating input, label setup
+.rating {
+  input {
+    display: none;
+  }  
+  &-label {
+    @include star($star-size-default,$star-space-default,$star-color-default,$star-font-default);
+    display: inline-block;
+  }
+}
+
+// Muttable rating stars
+.rating {
+  &[dir="rtl"] {
+   unicode-bidi:bidi-override; 
+    > input {
+      &:checked {
+         ~ .rating-label { 
+           font-size: 0;
+           &:before {
+             content: "\2605";
+             color: $star-color-active;
+           }
+         } 
+      }   
+    }    
+  }  
+}
+
+// Immutable rating stars
+.rating {
+  &-label {
+    &.is-active {
+     color: $star-color-active; 
+    }
+  }
+}
+
+// Rating stars sizes
+.rating {
+  &-large {
+    .rating-label {
+      @include starSize($star-size-large,$star-space-large,$star-font-large);
+      &:before {
+        font-size: $star-font-large;
+      }
+    }
+  }
+}
+
+.rating.rating-large {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+}
+
+div#wrapper {
+    margin-left: 2em;
+}

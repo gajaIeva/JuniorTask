@@ -15,7 +15,7 @@
                 <ul>
                     <i class="fas fa-map-marker"></i>
                     <li>
-                        {{ $camping->city }},
+                        {{ $camping->city }}
                     </li>
                     <li>
                         {{ $camping->country }}

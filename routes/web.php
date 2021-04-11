@@ -21,8 +21,8 @@ Route::get('/', function () {
 
 Route::get('/campings', [CampingController::class, 'index'])->name('campings.index');
 
-// Route::post('/articles', [ArticlesController::class, 'store']);
+Route::post('/campings', [CampingController::class, 'store']);
 Route::get('/campings/create', [CampingController::class, 'create'])->name('campings.create');
 Route::get('/campings/{camping}', [CampingController::class, 'show'])->name('campings.show'); 
-// Route::get('/articles/{article}/edit', [ArticlesController::class, 'edit']);
-// Route::put('/articles/{article}', [ArticlesController::class, 'update']);
+Route::get('/campings/{camping}/edit', [CampingController::class, 'edit'])->name('campings.edit'); ;
+Route::put('/campings/{camping}', [CampingController::class, 'update']);

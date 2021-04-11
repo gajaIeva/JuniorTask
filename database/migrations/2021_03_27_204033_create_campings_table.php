@@ -17,11 +17,11 @@ class CreateCampingsTable extends Migration
             $table->id();
             $table->string('country');
             $table->string('city');
-            $table->text('camping_name');
-            $table->integer('rating');
-            $table->float('review_number');
+            $table->string('camping_name');
+            $table->integer('rating')->nullable();
+            $table->string('review_number')->nullable();
             $table->string('link');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

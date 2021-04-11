@@ -1,12 +1,14 @@
 @extends('layout')
 
+
 @section('content')
 <div id="wrapper">
         <div id="page" class="container">
             <h2 class="form-heading">New Camping</h2>
 
-            <form method='POST' action="/campings">
+            <form method='POST' action="/campings/{{ $camping->id}}">
                 @csrf
+                @method('PUT')
 
                 <div class="field">
                     <label class="label" for="camping_name">Camping Name</label>
@@ -17,6 +19,8 @@
                             type="text" 
                             name="camping_name" 
                             id="camping_name"
+                            value="{{ $camping->camping_name }}" 
+                            required
                         >
 
                     </div>
@@ -32,6 +36,8 @@
                             type="text" 
                             name="country" 
                             id="country"
+                            value="{{ $camping->country }}" 
+                            required
                         >
 
                     </div>
@@ -47,6 +53,8 @@
                             type="text" 
                             name="city" 
                             id="city"
+                            value="{{ $camping->city }}" 
+                            required
                         >
 
                     </div>
@@ -62,6 +70,8 @@
                             type="text" 
                             name="review_number" 
                             id="review_number"
+                            value="{{ $camping->review_number }}" 
+                            required
                         >
 
                     </div>
@@ -77,6 +87,8 @@
                             type="text" 
                             name="link" 
                             id="link"
+                            value="{{ $camping->link }}" 
+                            required
                         >
 
                     </div>
@@ -92,6 +104,8 @@
                             type="text" 
                             name="image" 
                             id="camping-image"
+                            value="{{ $camping->image }}" 
+                            required
                         >
 
                     </div>
@@ -100,15 +114,15 @@
 
                 <label>Ratings</label>
                 <div class="rating rating-large" dir="rtl">
-                    <input type="radio" name="rating" id="5" value="5"/>
+                    <input type="radio" name="rating" id="5" value="{{ $camping->rating == '5' ? 'checked' : ''}}"/>
                     <label class="rating-label" for="5">&#9734</label>
-                    <input type="radio" name="rating" id="4" value="4"/>
+                    <input type="radio" name="rating" id="4" value="{{ $camping->rating == '4' ? 'checked' : ''}}"/>
                     <label class="rating-label" for="4">&#9734</label>
-                    <input type="radio" name="rating" id="3" value="3"/>
+                    <input type="radio" name="rating" id="3" value="{{ $camping->rating == '3' ? 'checked' : ''}}"/>
                     <label class="rating-label" for="3">&#9734</label>
-                    <input type="radio" name="rating" id="2" value="2"/>
+                    <input type="radio" name="rating" id="2" value="{{ $camping->rating == '2' ? 'checked' : ''}}"/>
                     <label class="rating-label" for="2">&#9734</label>
-                    <input type="radio" name="rating" id="1" value="1"/>
+                    <input type="radio" name="rating" id="1" value="{{ $camping->rating == 1 ? 'checked' : ''}}"/>
                     <label class="rating-label" for="1">&#9734</label>
                 </div>
 
