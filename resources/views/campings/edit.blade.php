@@ -114,15 +114,15 @@
 
                 <label>Ratings</label>
                 <div class="rating rating-large" dir="rtl">
-                    <input type="radio" name="rating" id="5" value="{{ $camping->rating == '5' ? 'checked' : ''}}"/>
+                    <input type="radio" name="rating" id="5" value="5" {{ $camping->rating == 5 ? 'checked' : '' }} />
                     <label class="rating-label" for="5">&#9734</label>
-                    <input type="radio" name="rating" id="4" value="{{ $camping->rating == '4' ? 'checked' : ''}}"/>
+                    <input type="radio" name="rating" id="4" value="4" {{ $camping->rating == 4 ? 'checked' : ''}} />
                     <label class="rating-label" for="4">&#9734</label>
-                    <input type="radio" name="rating" id="3" value="{{ $camping->rating == '3' ? 'checked' : ''}}"/>
+                    <input type="radio" name="rating" id="3" value="3" {{ $camping->rating == 3 ? 'checked' : ''}} />
                     <label class="rating-label" for="3">&#9734</label>
-                    <input type="radio" name="rating" id="2" value="{{ $camping->rating == '2' ? 'checked' : ''}}"/>
+                    <input type="radio" name="rating" id="2" value="2" {{ $camping->rating == 2 ? 'checked' : ''}} />
                     <label class="rating-label" for="2">&#9734</label>
-                    <input type="radio" name="rating" id="1" value="{{ $camping->rating == 1 ? 'checked' : ''}}"/>
+                    <input type="radio" name="rating" id="1" value="1" {{ $camping->rating == 1 ? 'checked' : ''}} />
                     <label class="rating-label" for="1">&#9734</label>
                 </div>
 

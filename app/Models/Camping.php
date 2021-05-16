@@ -17,4 +17,9 @@ class Camping extends Model
     {
         return route('campings.show', $this);
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
 }

@@ -17,6 +17,7 @@
                             type="text" 
                             name="camping_name" 
                             id="camping_name"
+                            required
                         >
 
                     </div>
@@ -32,6 +33,7 @@
                             type="text" 
                             name="country" 
                             id="country"
+                            required
                         >
 
                     </div>
@@ -47,6 +49,7 @@
                             type="text" 
                             name="city" 
                             id="city"
+                            required
                         >
 
                     </div>
@@ -62,6 +65,7 @@
                             type="text" 
                             name="review_number" 
                             id="review_number"
+                            required
                         >
 
                     </div>
@@ -77,6 +81,7 @@
                             type="text" 
                             name="link" 
                             id="link"
+                            required
                         >
 
                     </div>
@@ -92,6 +97,7 @@
                             type="text" 
                             name="image" 
                             id="camping-image"
+                            required
                         >
 
                     </div>
@@ -111,6 +117,28 @@
                     <input type="radio" name="rating" id="1" value="1"/>
                     <label class="rating-label" for="1">&#9734</label>
                 </div>
+
+                <div class="field">
+                    <label class="label" for="tags">Tags</label>
+                    
+                    <div class="control select is-multiple">
+                        <select 
+                            name='tags[]'
+                            multiple
+                        >
+                        
+                            @foreach ($tags as $tag)
+                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                            @endforeach
+                        </select>
+
+                        @error('tags')
+                            <p class="help is-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                </div>
+
 
                 <div class="field is-grouped">
 
